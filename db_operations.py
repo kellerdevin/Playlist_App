@@ -33,15 +33,14 @@ class db_operations():
     def all_attributes(self, query):
         self.cursor.execute(query)
         results = self.cursor.fetchall()
-        #songID = [i[0] for i in results]
+        songID = [i[0] for i in results]
         song_name = [i[1] for i in results]
         artist = [i[2] for i in results]
         album = [i[3] for i in results]
         release_date = [i[4] for i in results]
         explicit = [i[6] for i in results]
         print_list.print_changable_list(song_name[0],artist[0],album[0],release_date[0], explicit[0])
-        #print(songID)
-        #return songID[0]
+        return songID[0]
     # SELECT with named placeholders
     def name_placeholder_query(self,query,dictionary):
         self.cursor.execute(query,dictionary)

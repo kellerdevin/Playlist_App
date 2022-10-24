@@ -64,7 +64,9 @@ class search_by():
     
     def search_by_song_name(song_name):
         query = "SELECT * FROM songs WHERE name = '" + song_name + "'"
-        db_ops.all_attributes(query)
+        songID = db_ops.all_attributes(query)
+        return songID
+
 
 
 

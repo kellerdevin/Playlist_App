@@ -7,7 +7,7 @@ class print_list():
         print("Artist: " + artist_name)
         print("Album: " + album_name)
         print("Release Date: " + release_date)
-        #print("Explicit: " + explicit)
+        print("Explicit: " + str(explicit))
         print("\n")
 
         #print_list.print_update_options()

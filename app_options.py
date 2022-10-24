@@ -27,14 +27,7 @@ class app_options():
         print("Enter song name")
         song_name = input()
         songID = search_by.search_by_song_name(song_name)
-        print(songID)
         print_list.print_update_options()
-        query = user_choice.get_user_update_choice(song_name)
+        query = user_choice.get_user_update_choice(song_name, songID)
         db_ops.update_song(query)
-        #Check if update value work
-            #if true
-                #update value
-            #if false
-                #print not gunna work
-                #make them enter a new value
 
