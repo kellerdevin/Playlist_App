@@ -25,9 +25,9 @@ class user_choice():
                 new_release_date = input("Release Date to update to: ")
             query = "UPDATE songs SET releaseDate = '" + new_release_date + "' WHERE songID = '" + songID +"'"
         elif user_choice == 5:
-            new_Explicit = None
-            #while(type(new_Explicit) != bool):
-            new_Explicit = input("Explicit (TRUE or FALSE): ")
+            new_Explicit = ""
+            while((new_Explicit != "True") & (new_Explicit != "False")):
+                new_Explicit = input("Explicit (True or False): ")
             query = "UPDATE songs SET Explicit = '" + new_Explicit  + "' WHERE songID = '" + songID +"'"
         else:
             get_user_update_choice()
