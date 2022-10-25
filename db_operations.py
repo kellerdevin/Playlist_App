@@ -26,7 +26,8 @@ class db_operations():
         self.cursor.execute(query)
         results = self.cursor.fetchall()
         results = [i[0] for i in results]
-        results.remove(None)
+        if None in results:
+            results.remove(None)
         return results
 
     #function to return all attribute values from table
@@ -51,6 +52,18 @@ class db_operations():
     def update_song(self, query):
         self.cursor.execute(query)
         self.connection.commit()
+
+    #Executes query without returning a value
+    def execute_query(self,query):
+        self.cursor.execute(query)
+        self.connection.commit()
+
+    # function to return a single attribute values from table without removing None values
+    def single_attribute_none(self,query):
+        self.cursor.execute(query)
+        results = self.cursor.fetchall()
+        results = [i[0] for i in results]
+        return results
 
     def create_songs_table(self):
         query = '''

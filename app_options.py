@@ -31,3 +31,71 @@ class app_options():
         query = user_choice.get_user_update_choice(song_name, songID)
         db_ops.update_song(query)
 
+    def delete_by_title():
+        #find all of the song names on the playlist
+        query = '''
+        SELECT DISTINCT Name
+        FROM songs;
+        '''
+
+        print("Song names in playlist: ")
+        names = db_ops.single_attribute(query)
+
+        #print songs to user and return their choice
+        choices = {}
+        for i in range(len(names)):
+            print(i, names[i])
+            choices[i] = names[i]
+        index = helper.get_choice(choices.keys())
+
+        selectedName = choices[index]
+
+        #find songID of song with the selected name
+        query = '''
+        SELECT songID
+        FROM songs
+        WHERE Name = \'''' + selectedName + "\';"
+
+        requestedID = db_ops.single_record(query)
+
+        #print mathcing id
+        print(requestedID)
+
+        #Execute deletion
+        query = "DELETE FROM songs WHERE songID = \'" + requestedID + "\';"
+        db_ops.execute_query(query)
+
+    #Finds all records with at least one NULL value and removes them
+    def delete_nulls():
+
+        #find all of the song names on the playlist
+        query = '''
+        SELECT songID
+        FROM songs
+        WHERE Name IS NULL OR
+        Artist IS NULL OR
+        Album IS NULL OR
+        releaseDate IS NULL OR
+        Genre IS NULL OR
+        Explicit IS NULL OR
+        Duration IS NULL OR
+        Energy IS NULL OR
+        Danceability IS NULL OR
+        Acousticness IS NULL OR
+        Liveness IS NULL OR
+        Loudness IS NULL;
+    '''
+
+        songIDs = db_ops.single_attribute_none(query)
+
+    #Prints all songIDs of records that contain a NULL value in any attribute
+        for i in range(len(songIDs)):
+            print(i, songIDs[i])
+
+    #Execute deletion
+        for songID in songIDs:
+            query = "DELETE FROM songs WHERE songID = \'" + songID + "\';"
+            db_ops.execute_query(query)
+
+
+
