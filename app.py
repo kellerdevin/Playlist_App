@@ -40,9 +40,10 @@ def options():
     3) Find Songs by feature\n
     4) Update Song Info\n
     5) Delete Song\n
-    6) Exit
+    6) Delete Nulls\n
+    7) Exit\n
     ''')
-    return helper.get_choice([1,2,3,4,5,6])
+    return helper.get_choice([1,2,3,4,5,6,7])
 
 #print all artists, allow a user to select one, then return all songs from that artist
 def search_by_artist():
@@ -96,6 +97,8 @@ while True:
         case 5:
             app_options.delete_by_title()
         case 6:
+            app_options.delete_nulls()
+        case 7:
             print("Goodbye!")
             break
 
